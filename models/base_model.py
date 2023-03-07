@@ -4,7 +4,7 @@ import models
 
 
 class BaseModel:
-     id = str(uuid.uuid4())
+    id = str(uuid.uuid4())
     created_at = datetime.now()
     updated_at = datetime.now()
     """

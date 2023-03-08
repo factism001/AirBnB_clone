@@ -9,7 +9,7 @@ class BaseModel:
     updated_at = datetime.now()
     """
     Base Model class that defines all common attributes/methods
-    
+
     def __init__(self, *args, **kwargs):
         Constructor to initialize instance variables
         if kwargs is not None and len(kwargs) != 0:

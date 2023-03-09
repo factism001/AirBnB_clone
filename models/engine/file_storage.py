@@ -3,7 +3,10 @@ import os
 from models.base_model import BaseModel
 from models.user import User
 
-classes = {'BaseModel': BaseModel, 'User': User}
+classes = {'BaseModel': BaseModel, 'User': User,
+           'State': State, 'City': City,
+           'Amenity': Amenity, 'Place': Place,
+           'Review': Review}
 
 
 class FileStorage:
@@ -37,6 +40,6 @@ class FileStorage:
             with open(self.__file_path, 'r', encoding='utf-8') as file:
                 obj_dict = json.load(file)
                 for key, obj_data in obj_dict.items():
-                    class_name, obj_id = key.split('.')
-                    obj_data['__class__'] = class_name
-                    self.__objects[key] = eval(class_name)(**obj_data)
+                    classes, obj_id = key.split('.')
+                    obj_data['__class__'] = classes
+                    self.__objects[key] = eval(classes)(**obj_data)

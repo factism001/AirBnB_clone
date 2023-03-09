@@ -1,12 +1,14 @@
 #!/usr/bin/python3
-"""Inherances from Base Model"""
+"""Module for user inherence"""
 
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
     """Class User"""
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+        self.email = ''
+        self.password = ''
+        self.first_name = ''
+        self.last_name = ''

@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """State class inheritance"""
 
+from models.base_model import BaseModel
+
 
 class State(BaseModel):
     """Class State"""

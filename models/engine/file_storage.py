@@ -2,20 +2,35 @@ import json
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
-classes = {'BaseModel': BaseModel, 'User': User,
-           'State': State, 'City': City,
-           'Amenity': Amenity, 'Place': Place,
-           'Review': Review}
+classes = {'BaseModel': BaseModel, 'User': User, 'State': State, 'City': City,
+           'Amenity': Amenity, 'Place': Place, 'Review': Review}
 
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
-        """Returns the dictionary __objects"""
-        return self.__objects
+    """def all(self):
+        Returns the dictionary __objects
+        return self.__objects"""
+
+    def all(self, cls=None):
+        """
+        returns a dictionary containing every object
+        """
+        if (not cls):
+            return self.__objects
+        result = {}
+        for key in self.__objects.keys():
+            if (key.split(".")[0] == cls.__name__):
+                result.update({key: self.__objects[key]})
+        return result
 
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id"""
@@ -43,3 +58,16 @@ class FileStorage:
                     classes, obj_id = key.split('.')
                     obj_data['__class__'] = classes
                     self.__objects[key] = eval(classes)(**obj_data)
+
+    def close(self):
+        """display our HBNB data
+        """
+        self.reload()
+
+    def delete(self, obj=None):
+        """
+            delete obj from __objects if it’s inside - if obj is None,
+            the method should not do anything
+        """
+        if (obj):
+            self.__objects.pop("{}.{}".format(type(obj).__name__, obj.id))

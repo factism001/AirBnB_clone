@@ -15,9 +15,9 @@ class BaseModel:
         """Constructor to initialize instance variables"""
         if kwargs is not None and len(kwargs) != 0:
             for key, iso in kwargs.items():
-                if (key == 'id'):
-                    self.id = kwargs.get(key)
                 if key != '__class__':
+                    if (key == 'id'):
+                        self.id = kwargs.get(key)
                     if key in ['created_at', 'updated_at']:
                         iso = datetime.strptime(
                             iso, '%Y-%m-%dT%H:%M:%S.%f')

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+/python3
 """test for console"""
 import unittest
 from unittest.mock import patch
@@ -84,113 +84,7 @@ class TestUser(unittest.TestCase):
         """Validate count method"""
         try:
             os.remove("file.json")
-        except:
-            pass
-
-        
-jorgezafra94
-/
-AirBnB_clone
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-AirBnB_clone/tests/test_console.py
-@cmmolanos1
-cmmolanos1 [Fix] tests_console: adding more cases
- 1 contributor
-Executable File  285 lines (263 sloc)  12.8 KB
-#!/usr/bin/python3
-"""test for console"""
-import unittest
-from unittest.mock import patch
-from io import StringIO
-import os
-import json
-import console
-import tests
-from console import HBNBCommand
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-from models.engine.file_storage import FileStorage
-
-
-class TestUser(unittest.TestCase):
-
-    def tearDown(self):
-        """Remove temporary file (file.json) created as a result"""
-        try:
-            os.remove("../file.json")
         except Exception:
-            pass
-
-    def test_docstrings_in_console(self):
-        """checking for docstrings"""
-        self.assertIsNotNone(console.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_EOF.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_quit.__doc__)
-        self.assertIsNotNone(HBNBCommand().emptyline.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_create.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_show.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_destroy.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_all.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_update.__doc__)
-        self.assertIsNotNone(HBNBCommand().do_count.__doc__)
-        self.assertIsNotNone(HBNBCommand().default.__doc__)
-
-    def test_press_enter(self):
-        """When press enter no action has to been executed"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("\n")
-        self.assertEqual(f.getvalue(), '')
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("            \n")
-        self.assertEqual(f.getvalue(), '')
-
-    def test_wrong_command(self):
-        """When press random words no action has to been executed"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("daasdas")
-        self.assertEqual(f.getvalue(), '*** Unknown syntax: daasdas\n')
-
-    def test_help_with_args(self):
-        """Test if all docstring were written"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("help quit")
-        self.assertEqual(f.getvalue(), 'Quit command to exit the program\n\n')
-
-    def test_command_with_spaces(self):
-        """Despite spaces the command has to be executed"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("     help        quit")
-        self.assertEqual(f.getvalue(), 'Quit command to exit the program\n\n')
-
-    def test_quit(self):
-        """Test quit"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("quit")
-        self.assertEqual(f.getvalue(), '')
-
-    def test_EOF(self):
-        """Test EOF"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("EOF")
-        self.assertEqual(f.getvalue(), '\n')
-
-    def test_count(self):
-        """Validate count method"""
-        try:
-            os.remove("file.json")
-        except:
             pass
 
         with patch('sys.stdout', new=StringIO()) as f:
@@ -210,7 +104,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(f.getvalue(), '*** Unknown syntax: User.count()d\n')
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count")
-        self.assertEqual(f.getvalue(), '0\n')
+        sel.assertEqual(f.getvalue(), '0\n')
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count id")
         self.assertEqual(f.getvalue(), '0\n')
@@ -241,7 +135,7 @@ class TestUser(unittest.TestCase):
         """Validate show in both ways"""
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
         with patch('sys.stdout', new=StringIO()) as f:
@@ -332,7 +226,7 @@ class TestUser(unittest.TestCase):
         """Validate all both ways"""
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
         with patch('sys.stdout', new=StringIO()) as f:
@@ -383,9 +277,9 @@ class TestUser(unittest.TestCase):
                                  format(id))
         self.assertEqual(f.getvalue(), '')
         with patch('sys.stdout', new=StringIO()) as f:
-            a = "User.update(\"{}\", \'name\', \"Betty Holberton\")".format(id)
+            a = "User.update(\"{}\", \'name\', \"Alx Africa\")".format(id)
             HBNBCommand().onecmd(a)
         self.assertEqual(f.getvalue(), '')
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main()f

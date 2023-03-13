@@ -6,7 +6,5 @@ from models.base_model import BaseModel
 
 class City(BaseModel):
     """Class City"""
-    def __init__(self, *args, **kwargs):
-        super().__init__()
-        state_id = ''
-        name = ''
+    state_id = ''
+    name = ''
